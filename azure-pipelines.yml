@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- main
 
 jobs:
 - job: MacOS
@@ -73,6 +73,9 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   steps:
+  - script: |
+      git config --global core.autocrlf false
+    displayName: Configuring Git LF Settings
   - checkout: self
   - task: NodeTool@0
     inputs:
